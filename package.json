@@ -1,0 +1,14 @@
+{
+  "name": "wordpress-query",
+  "version": "1.0.0",
+  "description": "Query Wordpress for details of website",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Apan Jain",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.1"
+  }
+}
