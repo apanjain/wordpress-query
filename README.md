@@ -1,24 +1,44 @@
 # WORDPRESS QUERY
 
-A Node,js program to perform query on wordpress endpoints.
+A Node.js program to perform query on wordpress endpoints.
 
 ## Setup
 
 - You need access to a working wordpress instance, or you can creating one by following the guide [here](https://upcloud.com/community/tutorials/wordpress-with-docker/)
+- Clone this repository
 - Run the following command
 
 ```sh
 npm install
 ```
 
-- Change the base url in app.js to the point where your server is hosted
+- Create a .env file same as .env.example
+
+```sh
+cp .env.example .env
+```
+
+- Enter the base url of a running wordpress instance in the env file
 
 ## Usage
 
-- Run
+- To run using axios call
 
 ```sh
 node app.js
 ```
 
-- This will create respective files which contains the details about those routes
+- To run using node-wpapi
+
+```sh
+node wpapi.js
+```
+
+- This will log output in the following manner
+
+```js
+{recentPostsCount: "0"}
+{pagesCount: "2"}
+{postCount: "2"}
+{usersCount: "2"}
+```
