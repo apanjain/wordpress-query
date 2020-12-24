@@ -15,7 +15,8 @@ wp.posts()
     if (err) {
       console.log(err);
     } else {
-      postCount = data._paging.total;
+      postCount =
+        data && data._paging && data._paging.total ? data._paging.total : 0;
       console.log({ postCount });
     }
   });
@@ -32,7 +33,8 @@ wp.posts()
     if (err) {
       console.log(err);
     } else {
-      recentPostsCount = data._paging.total;
+      recentPostsCount =
+        data && data._paging && data._paging.total ? data._paging.total : 0;
       console.log({ recentPostsCount });
     }
   });
@@ -45,7 +47,8 @@ wp.users()
     if (err) {
       console.log(err);
     } else {
-      usersCount = data._paging.total;
+      usersCount =
+        data && data._paging && data._paging.total ? data._paging.total : 0;
       console.log({ usersCount });
     }
   });
@@ -58,7 +61,8 @@ wp.pages()
     if (err) {
       console.log(err);
     } else {
-      pagesCount = data._paging.total;
+      pagesCount =
+        data && data._paging && data._paging.total ? data._paging.total : 0;
       console.log({ pagesCount });
     }
   });
