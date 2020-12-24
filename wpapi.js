@@ -1,6 +1,10 @@
+require("dotenv").config();
 const WPAPI = require("wpapi");
 
-const wp = new WPAPI({ endpoint: "http://0.0.0.0:5000/wp-json" });
+const baseUrl = process.env.BASE_URL;
+
+console.log(baseUrl);
+const wp = new WPAPI({ endpoint: baseUrl });
 
 let postCount = 0;
 let recentPostsCount = 0;
