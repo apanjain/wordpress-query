@@ -1,60 +1,59 @@
-const WPAPI = require("wpapi");
-
-const wp = new WPAPI({ endpoint: "http://0.0.0.0:5000/wp-json" });
+const axios = require("axios");
 
 let postCount = 0;
 let recentPostsCount = 0;
 let usersCount = 0;
 let pagesCount = 0;
 
-wp.posts()
-  .param("_fields", "_paging")
-  .get((err, data) => {
-    if (err) {
-      console.log(err);
-    } else {
-      postCount = data._paging.total;
-      console.log({ postCount });
-    }
+// Count total number of posts
+
+axios
+  .get("http://localhost:5000/wp-json/wp/v2/posts?_fields=id")
+  .then((res) => {
+    postCount = res.headers["x-wp-total"];
+    console.log({ postCount });
+  })
+  .catch((err) => {
+    console.log(err);
   });
 
 const yesterday = new Date();
 yesterday.setDate(yesterday.getDate() - 1);
 
-// Check posts in past 24 hours
+// Count total number of posts in past 24 hours
 
-wp.posts()
-  .param("_fields", "_paging")
-  .after(yesterday.toISOString())
-  .get((err, data) => {
-    if (err) {
-      console.log(err);
-    } else {
-      recentPostsCount = data._paging.total;
-      console.log({ recentPostsCount });
-    }
+axios
+  .get(
+    `http://localhost:5000/wp-json/wp/v2/posts?_fields=id&after=${yesterday.toISOString()}`
+  )
+  .then((res) => {
+    recentPostsCount = res.headers["x-wp-total"];
+    console.log({ recentPostsCount });
+  })
+  .catch((err) => {
+    console.log(err);
   });
 
 // Count total number of User profiles
 
-wp.users()
-  .param("_fields", "_paging")
-  .get((err, data) => {
-    if (err) {
-      console.log(err);
-    } else {
-      usersCount = data._paging.total;
-      console.log({ usersCount });
-    }
+axios
+  .get(`http://localhost:5000/wp-json/wp/v2/posts?_fields=id`)
+  .then((res) => {
+    usersCount = res.headers["x-wp-total"];
+    console.log({ usersCount });
+  })
+  .catch((err) => {
+    console.log(err);
   });
 
-wp.pages()
-  .param("_fields", "_paging")
-  .get((err, data) => {
-    if (err) {
-      console.log(err);
-    } else {
-      pagesCount = data._paging.total;
-      console.log({ pagesCount });
-    }
+// Count total number of Pages on website
+
+axios
+  .get(`http://localhost:5000/wp-json/wp/v2/pages?_fields=id`)
+  .then((res) => {
+    pagesCount = res.headers["x-wp-total"];
+    console.log({ pagesCount });
+  })
+  .catch((err) => {
+    console.log(err);
   });

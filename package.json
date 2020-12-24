@@ -9,6 +9,7 @@
   "author": "Apan Jain",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.21.1",
     "wpapi": "^1.2.1"
   }
 }
